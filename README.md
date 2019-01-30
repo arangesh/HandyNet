@@ -29,7 +29,7 @@ This repository was created by modifying the pre-existing Mask R-CNN implementat
 Each `seq...` folder above is a from a separate capture sequence. You can split the sequences into `train` and `val` as per your requirement.
 Ensure that the original `objects.txt` is split into two corresponding files, one for each split. 
 
-### 3. Create train-val split using [this MATLAB script](https://github.com/arangesh/HandyNet/blob/master/prepare_data.mat).
+### 3. Create train-val split using [this MATLAB script](https://github.com/arangesh/HandyNet/blob/master/prepare_data.m).
 Make sure you replace `root` in this script with the actual path to the dataset.
 
 ## Training
