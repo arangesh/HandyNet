@@ -6,8 +6,6 @@ close all;
 root = '/path/to/dataset';
 train_path = fullfile(root, 'train');
 val_path = fullfile(root, 'val');
-train_objects = importdata(fullfile(train_path, 'objects.txt'));
-val_objects = importdata(fullfile(val_path, 'objects.txt'));
 train_seq_list = dir(fullfile(train_path, 'seq*'));
 train_seq_list = {train_seq_list.name};
 val_seq_list = dir(fullfile(val_path, 'seq*'));
@@ -24,7 +22,7 @@ for i = 1:length(train_seq_list)
     
     idx{i} = randperm(length(filenames));
     for j = 1:length(idx{i})
-        train_output{end+1} = sprintf('%s,%s,%s\n', train_seq_list{i}, filenames{idx{i}(j)}(1:end-4), train_objects{i});
+        train_output{end+1} = sprintf('%s,%s,%s\n', train_seq_list{i}, filenames{idx{i}(j)}(1:end-4));
     end
 end
 
@@ -45,7 +43,7 @@ for i = 1:length(val_seq_list)
     
     idx{i} = randperm(length(filenames));
     for j = 1:length(idx{i})
-        val_output{end+1} = sprintf('%s,%s,%s\n', val_seq_list{i}, filenames{idx{i}(j)}(1:end-4), val_objects{i});
+        val_output{end+1} = sprintf('%s,%s,%s\n', val_seq_list{i}, filenames{idx{i}(j)}(1:end-4));
     end
 end
 
