@@ -40,7 +40,7 @@ python3 handynet.py train --dataset=/path/to/dataset/ --model=imagenet
 ```
 
 ## Testing
-An example of using the HandyNet network for inference can be seen in [this script](https://github.com/arangesh/HandyNet/blob/master/scripts/demo_inference.py).
+An example using the HandyNet network for inference can be seen in [this script](https://github.com/arangesh/HandyNet/blob/master/scripts/demo_inference.py).
 
 This script can be used to generate results on the KITTI test set as follows:
 ```shell
