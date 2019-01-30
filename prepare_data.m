@@ -54,24 +54,24 @@ fclose(val_text);
 fprintf('Done with validation split.\n\n');
 
 %%
-H = 424;
-W = 512;
-tot_train_files = length(train_output);
-denom = tot_train_files*H*W;
-raw_depth_mean = 0;
-smooth_depth_mean = 0;
-
-for i = 1:length(train_seq_list)
-    filenames = dir(fullfile(train_path, train_seq_list{i}, 'raw_depth', '*.mat'));
-    filenames = {filenames(:).name}';
-    
-    for j = 1:length(filenames)
-        load(fullfile(train_path, train_seq_list{i}, 'raw_depth', filenames{j}));
-        raw_depth_mean = raw_depth_mean + sum(log(currdata(currdata ~= 0)))/(denom*length(currdata(currdata ~= 0))/(H*W));
-        load(fullfile(train_path, train_seq_list{i}, 'smooth_depth', filenames{j}));
-        smooth_depth_mean = smooth_depth_mean + sum(log(currdata(:)))/denom;
-    end
-    fprintf('Done with %s!\n', train_seq_list{i});
-end
-fprintf('The mean for the (log) raw depth dataset is: %f\n', raw_depth_mean);
-fprintf('The mean for the (log) smooth depth dataset is: %f\n', smooth_depth_mean);
+%H = 424;
+%W = 512;
+%tot_train_files = length(train_output);
+%denom = tot_train_files*H*W;
+%raw_depth_mean = 0;
+%smooth_depth_mean = 0;
+%
+%for i = 1:length(train_seq_list)
+%    filenames = dir(fullfile(train_path, train_seq_list{i}, 'raw_depth', '*.mat'));
+%    filenames = {filenames(:).name}';
+%    
+%    for j = 1:length(filenames)
+%        load(fullfile(train_path, train_seq_list{i}, 'raw_depth', filenames{j}));
+%        raw_depth_mean = raw_depth_mean + sum(log(currdata(currdata ~= 0)))/(denom*length(currdata(currdata ~= 0))/(H*W));
+%        load(fullfile(train_path, train_seq_list{i}, 'smooth_depth', filenames{j}));
+%        smooth_depth_mean = smooth_depth_mean + sum(log(currdata(:)))/denom;
+%    end
+%    fprintf('Done with %s!\n', train_seq_list{i});
+%end
+%fprintf('The mean for the (log) raw depth dataset is: %f\n', raw_depth_mean);
+%fprintf('The mean for the (log) smooth depth dataset is: %f\n', smooth_depth_mean);
