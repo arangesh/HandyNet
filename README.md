@@ -36,7 +36,7 @@ HandyNet can be trained using [this](https://github.com/arangesh/HandyNet/blob/m
 python3 handynet.py train --dataset=/path/to/dataset/ --model=imagenet
 ```
 
-## Testing
+## Inference
 An example using the HandyNet network for inference can be seen in [this script](https://github.com/arangesh/HandyNet/blob/master/scripts/demo_inference.py).
 
 This script can be run as follows:
