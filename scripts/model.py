@@ -1961,13 +1961,13 @@ class MaskRCNN():
 
             # Network Heads
             # TODO: verify that this handles zero padded ROIs
+            rois_large = expand_roi(config, name='roi_expand')(rois)
             mrcnn_class_logits, mrcnn_class =\
-                fpn_classifier_graph(rois, mrcnn_feature_maps, config.IMAGE_SHAPE,
+                fpn_classifier_graph(rois_large, mrcnn_feature_maps, config.IMAGE_SHAPE,
                                      config.POOL_SIZE, config.NUM_CLASSES)
             
-            rois_large = expand_roi(config, name='roi_expand')(rois)
             mrcnn_bbox =\
-                fpn_regressor_graph(rois_large, mrcnn_feature_maps, config.IMAGE_SHAPE,
+                fpn_regressor_graph(rois, mrcnn_feature_maps, config.IMAGE_SHAPE,
                                      config.POOL_SIZE, config.NUM_CLASSES)
 
             mrcnn_mask = build_fpn_mask_graph(rois, mrcnn_feature_maps,
@@ -2003,13 +2003,13 @@ class MaskRCNN():
         else:
             # Network Heads
             # Proposal classifier and BBox regressor heads
+            rpn_rois_large = expand_roi(config, name='roi_expand')(rpn_rois) 
             mrcnn_class_logits, mrcnn_class =\
-                fpn_classifier_graph(rpn_rois, mrcnn_feature_maps, config.IMAGE_SHAPE,
+                fpn_classifier_graph(rpn_rois_large, mrcnn_feature_maps, config.IMAGE_SHAPE,
                                      config.POOL_SIZE, config.NUM_CLASSES)
 
-            rpn_rois_large = expand_roi(config, name='roi_expand')(rpn_rois)
             mrcnn_bbox =\
-                fpn_regressor_graph(rpn_rois_large, mrcnn_feature_maps, config.IMAGE_SHAPE,
+                fpn_regressor_graph(rpn_rois, mrcnn_feature_maps, config.IMAGE_SHAPE,
                                      config.POOL_SIZE, config.NUM_CLASSES)
 
             # Detections
