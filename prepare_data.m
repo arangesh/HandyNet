@@ -22,7 +22,7 @@ for i = 1:length(train_seq_list)
     
     idx{i} = randperm(length(filenames));
     for j = 1:length(idx{i})
-        train_output{end+1} = sprintf('%s,%s,%s\n', train_seq_list{i}, filenames{idx{i}(j)}(1:end-4));
+        train_output{end+1} = sprintf('%s,%s\n', train_seq_list{i}, filenames{idx{i}(j)}(1:end-4));
     end
 end
 
@@ -43,7 +43,7 @@ for i = 1:length(val_seq_list)
     
     idx{i} = randperm(length(filenames));
     for j = 1:length(idx{i})
-        val_output{end+1} = sprintf('%s,%s,%s\n', val_seq_list{i}, filenames{idx{i}(j)}(1:end-4));
+        val_output{end+1} = sprintf('%s,%s\n', val_seq_list{i}, filenames{idx{i}(j)}(1:end-4));
     end
 end
 
