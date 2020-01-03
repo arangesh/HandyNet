@@ -130,7 +130,7 @@ class HandyNetConfig(Config):
     TRAIN_ROIS_PER_IMAGE = 20 # orignally 200
 
     # Percent of positive ROIs used to train classifier/mask heads
-    ROI_POSITIVE_RATIO = 0.1 # orignally 0.33
+    ROI_POSITIVE_RATIO = 0.33
 
     # Pooled ROIs
     POOL_SIZE = 7
