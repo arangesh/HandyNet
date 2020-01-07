@@ -2,12 +2,13 @@ import os
 import sys
 import numpy as np
 import timeit
+import argparse
+import scipy.io
 
 import handynet
 import utils
 import model as modellib
-import argparse
-import scipy.io
+import visualize
 
 class InferenceConfig(handynet.HandyNetConfig):
     # Set batch size to 1 since we'll be running inference on
@@ -30,7 +31,7 @@ model = modellib.MaskRCNN(mode="inference", model_dir='', config=config)
 model.load_weights(MODEL_PATH, by_name=True)
 
 # Load and preprocess depth file
-smooth_depth = scipy.io.loadmat(sys.argv[2])
+smooth_depth = scipy.io.loadmat(sys.argv[2])['currdata']
 smooth_depth = np.log(smooth_depth) - 6.756
 smooth_depth = 144.*smooth_depth[..., np.newaxis]
 image = np.concatenate((smooth_depth, smooth_depth, smooth_depth), axis = 2)
@@ -39,10 +40,9 @@ image = np.concatenate((smooth_depth, smooth_depth, smooth_depth), axis = 2)
 start_time = timeit.default_timer()
 results = model.detect([image], verbose=0)
 elapsed = timeit.default_timer() - start_time
-print("Image: %.6d/%.6d, Frame rate: %fHz" % (image_id+1, len(TS_list), 1./elapsed))
+print("Frame rate: %fHz" % (1./elapsed,))
 
 # Obtain results
-boxes = results[0]['rois']
-masks = results[0]['masks']
-object_class = results[0]['class_ids']
-scores = results[0]['scores']
+class_names = ['BG', 'no_object', 'smartphone', 'tablet', 'drink', 'book/newspaper']
+r = results[0]
+visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], class_names, r['scores'], display_time=5)
