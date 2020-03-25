@@ -83,7 +83,7 @@ class HandyNetConfig(Config):
     NUM_CLASSES = 1+5  # Originally 1
 
     # Length of square anchor side in pixels
-    RPN_ANCHOR_SCALES = (16, 32, 64, 128) # originally (32, 64, 128, 256, 512)
+    RPN_ANCHOR_SCALES = (16, 32, 64, 128, 256) # originally (32, 64, 128, 256, 512)
 
     # Ratios of anchors at each cell (width/height)
     # A value of 1 represents a square anchor, and 0.5 is a wide anchor
